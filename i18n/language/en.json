@@ -1,4 +1,12 @@
 {
   "welcome": "Welcome",
-  "test": "Test"
+  "test": "Test",
+  "operate": "Operate",
+  "name": "Name",
+  "age": "Age",
+  "add": "Add",
+  "edit": "Edit",
+  "delete": "Delete",
+  "chinese":"Chinese",
+  "english":"English"
 }
