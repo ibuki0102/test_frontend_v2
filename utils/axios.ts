@@ -1,8 +1,8 @@
 // api/axiosInstance.ts
-import axios from 'axios';
+import axios from 'axios'
 
 export const createApi = () => {
-  const runtimeConfig = useRuntimeConfig(); 
+  const runtimeConfig = useRuntimeConfig()
 
   return axios.create({
     baseURL: runtimeConfig.public.apiBase,
@@ -10,5 +10,5 @@ export const createApi = () => {
     headers: {
       'Content-Type': 'application/json',
     },
-  });
-};
+  })
+}
