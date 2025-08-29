@@ -87,8 +87,6 @@ import type { UserData } from '~/types/User'
 import { getUsers, addUser, editUser, deleteUser } from '~/api/user'
 const { t, locale } = useI18n()
 
-const baseUrl = '' // 後端網址 將由面試官提供
-
 /**使用者資料 */
 const userData: Ref<UserData> = ref({
   id: 0,
@@ -104,9 +102,15 @@ function onAddUser(): void {
   }
 }
 
-getUsers().then((result) => {
-  userList.value = result.data
+const { data, error } = await useAsyncData('todos', async () => {
+  const res = await getUsers()
+  return res.data
 })
+if (!error.value) {
+  userList.value = data.value as UserData[]
+} else {
+  console.error(error.value)
+}
 </script>
 
 <style scoped lang="scss"></style>
