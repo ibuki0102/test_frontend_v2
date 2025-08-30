@@ -1,6 +1,10 @@
 <template>
   <div class="flex flex-col gap-2">
-    <label :for="label">{{ label }}</label>
+    <label :for="label">
+      <span v-if="props.required" class="text-red-400">*</span>
+      {{ label }}
+      <span v-if="errors.length" class="text-red-400">{{ errors.join(', ') }}</span>
+    </label>
     <input
       :id="label"
       class="bg-transparent border rounded-md h-10 px-2"
@@ -18,6 +22,8 @@ interface Props {
   label?: string
   type: string
   value: string | number | null
+  required: boolean
+  errors: string[]
 }
 
 const emit = defineEmits<{
@@ -26,7 +32,10 @@ const emit = defineEmits<{
 
 const props = withDefaults(defineProps<Props>(), {
   id: '',
-  value: '',
+  label: '',
+  type: '',
+  value: null,
+  required: false,
 })
 
 /**輸入值 */

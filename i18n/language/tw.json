@@ -5,8 +5,16 @@
   "name": "名字",
   "age": "年齡",
   "add": "新增",
-  "edit": "編輯",
+  "edit": "修改",
   "delete": "刪除",
   "chinese": "中文",
-  "english": "英文"
+  "english": "英文",
+  "required": "必填",
+  "cancel": "取消",
+  "confirm": "確定",
+  "confirmTitle": "{operate}確認",
+  "confirmContent": "確定要{operate}使用者嗎？",
+  "operateSuccess": "{operate}成功!!",
+  "validationErrorHeader": "驗證錯誤",
+  "RequiredFieldError": "必要項欄位未填!!"
 }

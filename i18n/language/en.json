@@ -8,5 +8,13 @@
   "edit": "Edit",
   "delete": "Delete",
   "chinese": "Chinese",
-  "english": "English"
+  "english": "English",
+  "required": "Required",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "confirmTitle": "{operate} Confirm",
+  "confirmContent": "Are you sure you want to {operate} the user?",
+  "operateSuccess": "{operate} success!!",
+  "validationErrorHeader": "Validation Error",
+  "RequiredFieldError": "Required fields are not filled in!!"
 }

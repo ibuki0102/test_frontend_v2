@@ -15,6 +15,9 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     apiBase: '',
+    public: {
+      apiBase: '',
+    },
   },
 
   googleFonts: {

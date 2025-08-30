@@ -11,3 +11,8 @@ export interface ApiResponse<T> {
   data: T
   message: string
 }
+
+/**刪除使用者用的id資料 */
+export interface IdData {
+  id: number
+}

@@ -1,7 +1,7 @@
 <template>
   <button
+    type="button"
     :class="`e-btn-${props.color} hover:opacity-80 ${props.active ? 'border-2 border-white' : ''}`"
-    @click="$emit('click')"
   >
     <template v-if="props.text">{{ props.text }}</template>
     <template v-else><slot></slot></template>
