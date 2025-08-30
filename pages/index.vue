@@ -2,22 +2,14 @@
   <div class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
     <div class="space-y-6 w-full max-w-2xl">
       <div class="flex justify-end gap-4">
-        <!-- 中文 -->
-        <EBtn
-          color="success"
-          :text="t('chinese')"
-          class="px-3 py-1 rounded-md"
-          @click="onSwitchLang('zh-TW')"
-          :active="locale === 'zh-TW'"
-        />
-        <!-- 英文 -->
-        <EBtn
-          color="warn"
-          :text="t('english')"
-          class="px-3 py-1 rounded-md text-black"
-          @click="onSwitchLang('en-US')"
-          :active="locale === 'en-US'"
-        />
+        <SwitchLocalePathLink
+          v-for="locale of locales"
+          :locale="locale.code"
+          class="border border-gray-700 bg-gray-800 rounded-lg px-2 py-1"
+          :class="{ 'border-white text-white': locale.code === currentLocal }"
+        >
+          {{ locale.name }}
+        </SwitchLocalePathLink>
       </div>
 
       <!-- 表單 -->
@@ -126,10 +118,10 @@ import { z } from 'zod'
 import { cloneDeep } from 'lodash-es'
 import { useUserStore } from '~/store/userStore'
 
-const { t, locale } = useI18n()
+const { t, locale: currentLocal, locales } = useI18n()
 
 const userStore = useUserStore()
-const { userData } = storeToRefs(userStore)
+const { userData, userList } = storeToRefs(userStore)
 
 /**當前上方區塊的模式 */
 const currentMode: Ref<'add' | 'edit'> = ref('add')
@@ -151,8 +143,6 @@ const defaultUserData: UserData = {
   name: '',
   age: null,
 }
-/**使用者清單 */
-const userList: Ref<UserData[]> = ref([])
 
 /**所有錯誤 */
 const errors: Ref<Record<string, { errors: string[] }> | null> = ref(null)
@@ -165,13 +155,6 @@ const userSchema = z.object({
     .min(1, { error: t('required') }),
   age: z.number({ error: t('required') }).min(1, { error: t('required') }),
 })
-
-/**變更語系 */
-async function onSwitchLang(lang: 'zh-TW' | 'en-US') {
-  locale.value = lang
-  // 等待對應語系檔載入完成
-  await nextTick()
-}
 
 /**新增使用者 */
 async function onAddUser(): Promise<void> {
